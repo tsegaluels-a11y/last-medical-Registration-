@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ዕያጋ ዓርቢ መለስተኛ ሆስፒታል - የታካሚ ምዝገባ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nyala', 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .hospital-header {
+            background: #006c67;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hospital-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .hospital-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            color: #006c67;
+        }
+        
+        .hospital-text h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        
+        .header {
+            background: #0288d1;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .registration-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: #006c67;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #006c67;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .search-section {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-section input {
+            flex: 1;
+        }
+        
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-excel {
+            background: #217346;
+            color: white;
+        }
+        
+        .btn-pdf {
+            background: #d32f2f;
+            color: white;
+        }
+        
+        .btn-search {
+            background: #006c67;
+            color: white;
+        }
+        
+        .btn-backup {
+            background: #6a1b9a;
+            color: white;
+        }
+        
+        .btn-restore {
+            background: #ff8f00;
+            color: white;
+        }
+        
+        .btn-logout {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background: #006c67;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #00514d;
+        }
+        
+        .patient-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .patient-table th, .patient-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .patient-table th {
+            background: #006c67;
+            color: white;
+        }
+        
+        .patient-table tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-edit {
+            background: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .btn-delete {
+            background: #f44336;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .success {
+            color: green;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .backup-section {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .hospital-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .hospital-info {
+                flex-direction: column;
+            }
+            
+            .hospital-logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .export-buttons, .search-section {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hospital-header">
+            <div class="hospital-info">
+                <div class="hospital-logo">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <div class="hospital-text">
+                    <h1>ዕዳጋ ዓርቢ መለስተኛ  ሆስፒታል</h1>
+                    <p>EDAGA ARBI PRIMARY HOSPITAL</p>
+               </div>
+            </div>
+            <div class="system-name">
+                <h2>የታካሚ ምዝገባ ስርዓት</h2>
+            </div>
+        </div>
+        
+        <div class="header">
+            <h1>የካርድ ክፍል ታካሚዎች ምዝገባ</h1>
+            <p>እንኳን ወደ ታካሚዎች ምዝገባ ስርዓታችን በደህና መጡ</p>
+        </div>
+        
+        <div class="content">
+            <div class="registration-section">
+                <h2 class="section-title">አዲስ ታካሚ ይመዝግቡ</h2>
+                <form id="patientForm">
+                    <div class="form-group">
+                        <label for="patientId">የታካሚ መለያ ቁጥር</label>
+                        <input type="text" id="patientId" placeholder="የታካሚ መለያ ቁጥር" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">ሙሉ ስም</label>
+                        <input type="text" id="fullName" placeholder="ሙሉ ስም" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">ዕድሜ</label>
+                        <input type="number" id="age" placeholder="ዕድሜ" required min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">ጾታ</label>
+                        <select id="gender" required>
+                            <option value="">ጾታ ይምረጡ</option>
+                            <option value="ወንድ">ወንድ</option>
+                            <option value="ሴት">ሴት</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">አድራሻ</label>
+                        <textarea id="address" placeholder="አድራሻ" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">ስልክ ቁጥር</label>
+                        <input type="tel" id="phone" placeholder="ስልክ ቁጥር">
+                    </div>
+                    
+                    <button type="submit">ታካሚ ይመዝግቡ</button>
+                    <p id="formSuccess" class="success" style="display: none;">ታካሚ በተሳካ ሁኔታ ተመዝግቧል!</p>
+                </form>
+            </div>
+            
+            <div class="backup-section">
+                <h2 class="section-title">የታካሚዎች መረጃ አስቀምጥ/አምጫ</h2>
+                <div class="export-buttons">
+                    <button class="btn btn-backup" id="backupData">
+                        <i class="fas fa-download"></i> መረጃ አስቀምጥ (Backup)
+                    </button>
+                    <button class="btn btn-restore" id="restoreButton">
+                        <i class="fas fa-upload"></i> መረጃ አምጫ (Restore)
+                    </button>
+                    <input type="file" id="restoreFile" class="file-input" accept=".json">
+                    <button class="btn btn-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> ውጣ
+                    </button>
+                </div>
+                <p id="backupMessage" class="success" style="display: none;"></p>
+            </div>
+            
+            <div class="patients-list">
+                <h2 class="section-title">
+                    <span>የተመዘገቡ ታካሚዎች</span>
+                    <div class="export-buttons">
+                        <button class="btn btn-excel" id="exportExcel">
+                            <i class="fas fa-file-excel"></i> Excel
+                        </button>
+                        <button class="btn btn-pdf" id="exportPdf">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                    </div>
+                </h2>
+                
+                <div class="search-section">
+                    <input type="text" id="searchInput" placeholder="ታካሚን በስም፣ መለያ ቁጥር ወይም ስልክ ቁጥር ፈልግ...">
+                    <button class="btn btn-search" id="searchButton">
+                        <i class="fas fa-search"></i> ፈልግ
+                    </button>
+                </div>
+                
+                <table class="patient-table">
+                    <thead>
+                        <tr>
+                            <th>መለያ ቁጥር</th>
+                            <th>ስም</th>
+                            <th>ዕድሜ</th>
+                            <th>ጾታ</th>
+                            <th>ስልክ</th>
+                            <th>አድራሻ</th>
+                            <th>ድርጊት</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientsTableBody">
+                        <!-- Patient data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Created by Tsegaluel Desta 0914855201 በ 2017 ዓ/ም</p>
+        </div>
+    </div>
+
+    <script>
+        // Array to store patients
+        let patients = [];
+        let editMode = false;
+        let currentEditId = null;
+        
+        // DOM elements
+        const patientForm = document.getElementById('patientForm');
+        const patientsTableBody = document.getElementById('patientsTableBody');
+        const formSuccess = document.getElementById('formSuccess');
+        const exportExcel = document.getElementById('exportExcel');
+        const exportPdf = document.getElementById('exportPdf');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const backupData = document.getElementById('backupData');
+        const restoreButton = document.getElementById('restoreButton');
+        const restoreFile = document.getElementById('restoreFile');
+        const backupMessage = document.getElementById('backupMessage');
+        
+        // Load data from localStorage on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedPatients = localStorage.getItem('patientsData');
+            if (savedPatients) {
+                patients = JSON.parse(savedPatients);
+                updatePatientsTable();
+            }
+        });
+        
+        // Save data to localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('patientsData', JSON.stringify(patients));
+        }
+        
+        // Patient form submission
+        patientForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const patientId = document.getElementById('patientId').value;
+            const fullName = document.getElementById('fullName').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (editMode) {
+                // Update existing patient
+                const index = patients.findIndex(p => p.id === currentEditId);
+                if (index !== -1) {
+                    patients[index] = {
+                        id: patientId,
+                        name: fullName,
+                        age: age,
+                        gender: gender,
+                        address: address,
+                        phone: phone
+                    };
+                }
+                editMode = false;
+                currentEditId = null;
+            } else {
+                // Create new patient object
+                const newPatient = {
+                    id: patientId,
+                    name: fullName,
+                    age: age,
+                    gender: gender,
+                    address: address,
+                    phone: phone
+                };
+                
+                // Add to patients array
+                patients.push(newPatient);
+            }
+            
+            // Save to localStorage
+            saveToLocalStorage();
+            
+            // Update the table
+            updatePatientsTable();
+            
+            // Show success message
+            formSuccess.style.display = 'block';
+            formSuccess.textContent = editMode ? 
+                "ታካሚ በተሳካ ሁኔታ ተስተካክሏል!" : 
+                "ታካሚ በተሳካ ሁኔታ ተመዝግቧል!";
+                
+            setTimeout(() => {
+                formSuccess.style.display = 'none';
+            }, 3000);
+            
+            // Reset the form
+            patientForm.reset();
+        });
+        
+        // Search functionality
+        searchButton.addEventListener('click', function() {
+            performSearch();
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                updatePatientsTable();
+                return;
+            }
+            
+            const filteredPatients = patients.filter(patient => 
+                patient.id.toLowerCase().includes(searchTerm) ||
+                patient.name.toLowerCase().includes(searchTerm) ||
+                patient.phone.includes(searchTerm)
+            );
+            
+            // Clear the table
+            patientsTableBody.innerHTML = '';
+            
+            // Add filtered patients to the table
+            filteredPatients.forEach(patient => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.phone}</td>
+                    <td>${patient.address}</td>
+                    <td class="action-buttons">
+                        <button class="btn-edit" onclick="editPatient('${patient.id}')">
+                            <i class="fas fa-edit"></i> አስተካክል
+                        </button>
+                        <button class="btn-delete" onclick="deletePatient('${patient.id}')">
+                            <i class="fas fa-trash"></i> ሰርዝ
+                        </button>
+                    </td>
+                `;
+                
+                patientsTableBody.appendChild(row);
+            });
+        }
+        
+        // Update patients table function
+        function updatePatientsTable() {
+            // Clear the table
+            patientsTableBody.innerHTML = '';
+            
+            // Add each patient to the table
+            patients.forEach(patient => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.phone}</td>
+                    <td>${patient.address}</td>
+                    <td class="action-buttons">
+                        <button class="btn-edit" onclick="editPatient('${patient.id}')">
+                            <i class="fas fa-edit"></i> አስተካክል
+                        </button>
+                        <button class="btn-delete" onclick="deletePatient('${patient.id}')">
+                            <i class="fas fa-trash"></i> ሰርዝ
+                        </button>
+                    </td>
+                `;
+                
+                patientsTableBody.appendChild(row);
+            });
+        }
+        
+        // Edit patient function
+        function editPatient(id) {
+            const patient = patients.find(p => p.id === id);
+            if (patient) {
+                document.getElementById('patientId').value = patient.id;
+                document.getElementById('fullName').value = patient.name;
+                document.getElementById('age').value = patient.age;
+                document.getElementById('gender').value = patient.gender;
+                document.getElementById('address').value = patient.address;
+                document.getElementById('phone').value = patient.phone;
+                
+                editMode = true;
+                currentEditId = id;
+                
+                // Scroll to form
+                document.querySelector('.registration-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Delete patient function
+        function deletePatient(id) {
+            if (confirm('ይህን ታካሚ ለመሰረዝ እርግጠኛ ነዎት?')) {
+                patients = patients.filter(p => p.id !== id);
+                saveToLocalStorage();
+                updatePatientsTable();
+            }
+        }
+        
+        // Backup data function
+        backupData.addEventListener('click', function() {
+            const dataStr = JSON.stringify(patients, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `ታካሚዎች_ምዝገባ_${new Date().toLocaleDateString()}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            backupMessage.textContent = 'መረጃው በተሳካ ሁኔታ ተሸጧል!';
+            backupMessage.style.display = 'block';
+            setTimeout(() => {
+                backupMessage.style.display = 'none';
+            }, 3000);
+        });
+        
+        // Restore data function
+        restoreButton.addEventListener('click', function() {
+            restoreFile.click();
+        });
+        
+        restoreFile.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const jsonData = JSON.parse(e.target.result);
+                    if (Array.isArray(jsonData)) {
+                        patients = jsonData;
+                        saveToLocalStorage();
+                        updatePatientsTable();
+                        
+                        backupMessage.textContent = 'መረጃው በተሳካ ሁኔታ ተጫነ!';
+                        backupMessage.style.display = 'block';
+                        setTimeout(() => {
+                            backupMessage.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        alert('የተሳሳት ፋይል ቅርጸት! ትክክለኛ JSON ፋይል ይምረጡ።');
+                    }
+                } catch (error) {
+                    alert('ፋይል ማንበብ አልተቻለም! ትክክለኛ JSON ፋይል ይምረጡ።');
+                    console.error(error);
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset the file input
+            event.target.value = '';
+        });
+        
+        // Export to Excel function
+        exportExcel.addEventListener('click', function() {
+            // Prepare data for export
+            const data = patients.map(patient => ({
+                'መለያ ቁጥር': patient.id,
+                'ስም': patient.name,
+                'ዕድሜ': patient.age,
+                'ጾታ': patient.gender,
+                'ስልክ': patient.phone,
+                'አድራሻ': patient.address
+            }));
+            
+            // Create worksheet
+            const worksheet = XLSX.utils.json_to_sheet(data);
+            
+            // Create workbook
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'ታካሚዎች');
+            
+            // Export to Excel
+            XLSX.writeFile(workbook, 'ታካሚዎች_ምዝገባ.xlsx');
+        });
+        
+        // Export to PDF function
+        exportPdf.addEventListener('click', function() {
+            // Create new PDF document
+            const doc = new jsPDF();
+            
+            // Add title
+            doc.setFontSize(18);
+            doc.text('ኢዳጋ አርቢ የመጀመርያ ሆስፒታል - የታካሚዎች ምዝገባ', 14, 15);
+            doc.setFontSize(12);
+            doc.text(`ሪፖርት ቀን: ${new Date().toLocaleDateString()}`, 14, 22);
+            
+            // Prepare data for table
+            const tableData = patients.map(patient => [
+                patient.id,
+                patient.name,
+                patient.age,
+                patient.gender,
+                patient.phone,
+                patient.address
+            ]);
+            
+            // Create table
+            doc.autoTable({
+                head: [['መለያ ቁጥር', 'ስም', 'ዕድሜ', 'ጾታ', 'ስልክ', 'አድራሻ']],
+                body: tableData,
+                startY: 30,
+                theme: 'grid',
+                styles: { fontSize: 9, cellPadding: 3 },
+                headStyles: { fillColor: [0, 108, 103] }
+            });
+            
+            // Save PDF
+            doc.save('ታካሚዎች_ምዝገባ.pdf');
+        });
+        
+        // Logout function
+        function logout() {
+            window.location.href = 'login.html';
+        }
+        
+        // Add some sample patients for demonstration
+        if (patients.length === 0) {
+            patients = [
+                {
+                    id: 'P001',
+                    name: 'ዳዊት መኮንን',
+                    age: 35,
+                    gender: 'ወንድ',
+                    address: 'አዲስ አበባ, ቦሌ',
+                    phone: '0911-223344'
+                },
+                {
+                    id: 'P002',
+                    name: 'ሐና አለማየሁ',
+                    age: 28,
+                    gender: 'ሴት',
+                    address: 'አዲስ አበባ, ኮተቤ',
+                    phone: '0922-334455'
+                }
+            ];
+            saveToLocalStorage();
+        }
+        
+        // Initialize the table with sample data
+        updatePatientsTable();
+    </script>
+
+    <!-- Include necessary libraries for PDF and Excel export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
